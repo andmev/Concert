@@ -34,41 +34,28 @@ _Остання фіксація вимог: 26 липня 2026._
 
 ## Поточна базова конфігурація
 
-```mermaid
-flowchart TB
-    subgraph Full["Повний виступ"]
-        Mac1["MacBook Pro<br/>MainStage"] -->|"USB"| CQ["Allen & Heath<br/>CQ-12T"]
-        Guitar1["Ovation guitar"] --> TC1["TC-Helicon<br/>(routing to be confirmed)"]
-        Mic1["Shure SM58"] --> TC1
-        TC1 --> CQ
-        CQ -->|"Stereo mix"| FOH["FOH майданчика"]
-    end
-
-    subgraph Small["Малий виступ"]
-        Mac2["MacBook Pro<br/>MainStage"] -->|"USB"| Zoom["Zoom AMS-24"]
-        Guitar2["Ovation guitar"] --> TC2["TC-Helicon<br/>(routing to be confirmed)"]
-        Mic2["Shure SM58"] --> TC2
-        TC2 --> Zoom
-        Zoom -->|"OUTPUT A L/R"| Venue["Bose S1 Pro+ або<br/>обладнання майданчика"]
-    end
-```
-
 ### Повний виступ із CQ-12T
 
-```text
-MacBook / MainStage --USB--> CQ-12T --Main L/R або інша погоджена stereo-пара--> FOH майданчика
-Гітара --> TC-Helicon --> CQ-12T
-Shure SM58 --> TC-Helicon --> CQ-12T
+```mermaid
+flowchart LR
+    Mac["MacBook Pro<br/>MainStage"] -->|"USB"| CQ["Allen & Heath<br/>CQ-12T"]
+    Guitar["Ovation guitar"] --> TC["TC-Helicon<br/>routing to be confirmed"]
+    Mic["Shure SM58"] --> TC
+    TC --> CQ
+    CQ -->|"Main L/R · stereo mix"| FOH["FOH майданчика"]
 ```
 
 Виконавець сам зводить backing track, гітару й вокал у CQ-12T та віддає готовий stereo mix у FOH. Остаточний вибір фізичних виходів CQ-12T залежить від сцени; це має визначатися відповідним сценарієм підключення і не є вже прийнятим рішенням. Фізичні виходи TC-Helicon і те, чи гітара й вокал доходять до CQ окремо або змішаними, ще не підтверджені повним офіційним manual; не налаштовувати це за схемою з пам’яті.
 
 ### Малий виступ із Zoom AMS-24
 
-```text
-MacBook / MainStage --USB--> Zoom AMS-24 --OUTPUT A L/R--> обладнання майданчика
-Гітара --> TC-Helicon --> Zoom AMS-24
-Shure SM58 --> TC-Helicon --> Zoom AMS-24
+```mermaid
+flowchart LR
+    Mac["MacBook Pro<br/>MainStage"] -->|"USB"| Zoom["Zoom AMS-24"]
+    Guitar["Ovation guitar"] --> TC["TC-Helicon<br/>routing to be confirmed"]
+    Mic["Shure SM58"] --> TC
+    TC --> Zoom
+    Zoom -->|"OUTPUT A L/R"| Venue["Bose S1 Pro+ або<br/>обладнання майданчика"]
 ```
 
 Кінцеве обладнання майданчика не визначене. Один Bose S1 Pro+ означає mono-режим для бек-треку; stereo-версія залишається для FOH або двох сумісних каналів/акустичних систем.
