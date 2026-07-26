@@ -1,40 +1,50 @@
 :root {
   --concert-blue: #2457a6;
   --concert-ink: #1f2937;
+  --md-primary-fg-color: #2457a6;
+  --md-primary-fg-color--light: #4a78be;
+  --md-primary-fg-color--dark: #173f7a;
 }
 
-body,
-.wy-nav-content {
+.md-typeset {
   color: var(--concert-ink);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.82rem;
+  line-height: 1.7;
 }
 
-.wy-side-nav-search {
-  background: var(--concert-blue);
+.md-grid {
+  max-width: none;
 }
 
-.wy-nav-side {
-  background: #182435;
+.md-content {
+  max-width: none;
 }
 
-.wy-menu-vertical a {
-  line-height: 1.45;
+.md-typeset__table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
 }
 
-.wy-nav-content {
-  max-width: 980px;
-}
-
-h1, h2, h3 {
-  color: #173f7a;
-}
-
-table {
+.md-typeset table:not([class]) {
+  display: table;
   width: 100%;
 }
 
-blockquote {
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  color: #173f7a;
+}
+
+.md-typeset blockquote {
   border-left-color: #4a78be;
+}
+
+.md-typeset .mermaid {
+  overflow-x: auto;
+  padding: 0.75rem 0;
 }
 
 .task-list-item {
