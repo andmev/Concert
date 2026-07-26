@@ -21,6 +21,7 @@ flowchart LR
 
 5. `10-logic-preflight.md` — що перевірити в готовому проєкті Logic, як виключити живу акустичну гітару й основний вокал, як вести картку пісні.
 6. `11-logic-export-stereo-backing-track.md` — експорт одного stereo-файлу на пісню; іменування, папки, перевірка файлу.
+   - `song-records/` — лише фактичні картки пісень і результати тестів; не містить дубльованих процедур.
 7. `12-song-structure-sheet.md` — шаблон картки структури: секції, темп, marker/loop-рішення, дозвіл на повтор приспіву, особлива темпова пісня.
 8. `13-mainstage-concert-foundation.md` — audio device, базовий `Concert`, один `Set`/`Patch` на пісню, вихід stereo backing track.
 9. `14-mainstage-playback-options.md` — порівняння варіантів для автоматичної пісні й повтору приспіву, документальне обґрунтування вибору та rehearsal test.

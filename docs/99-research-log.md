@@ -127,11 +127,56 @@ flowchart LR
 
 - [Apple: Set up audio devices in Audio MIDI Setup](https://support.apple.com/guide/audio-midi-setup/set-up-audio-devices-ams59f301fda/mac) — після вибору audio device в sidebar `Format` показує/задає sample rate та bit depth; Apple вимагає відповідності параметрам пристрою.
 
+### Фактичний результат користувача
+
+- CQ-12T: `96 kHz`; MainStage: `96 kHz`; macOS `Audio MIDI Setup`: `96,000 Hz, 16 ch, 24-bit Integer`.
+- Після узгодження MainStage з 96 kHz помилка `Sample Rate 48 kHz not allowed` зникла. Імовірне початкове значення MainStage `48 kHz` записано лише як гіпотеза користувача, не як офіційно підтверджена причина.
+
 ### Brave Web Search
 
 **Query:** `site:support.apple.com/guide/mainstage "Sample Rate" "Audio Preferences" MainStage`
 
 **Результат:** точного актуального результату Apple Search не повернув. Для кроків MainStage використовуємо лише перевірені екрани встановленого MainStage і не приписуємо Apple непідтверджені назви параметрів.
+
+## 2026-07-26 — Logic Pro: збереження project sample rate під час export
+
+### Brave Web Search
+
+**Query:** `site:support.apple.com/guide/logicpro bounce project sample rate PCM sample rate Logic Pro`
+
+**Офіційні результати, використані в `11-logic-export-stereo-backing-track.md`:**
+
+- [Apple: Set the project sample rate](https://support.apple.com/guide/logicpro/set-the-project-sample-rate-lgcpce0958b8/mac) — не змінювати sample rate після запису або імпорту audio files, щоб уникнути зміни pitch і speed; Logic виконує internal processing і bouncing в original project sample rate.
+- [Apple: Bounce a project to an audio file](https://support.apple.com/guide/logicpro/bounce-a-project-to-an-audio-file-lgcp785a41c3/mac) — у bounce потрапляють параметри, effects і automation нем’ючених tracks; `Output 1-2` є типовим stereo output для `File > Bounce`.
+
+## 2026-07-26 — Logic Pro: значення Start/End у Bounce
+
+### Brave Web Search
+
+**Query:** `site:support.apple.com/guide/logicpro bar beat division tick position display start end bounce range`
+
+**Офіційні результати, використані в `11-logic-export-stereo-backing-track.md`:**
+
+- [Apple: Change event position and length](https://support.apple.com/guide/logicpro/change-the-position-and-length-of-events-lgcp215888c6/mac) — музичні позиції мають одиниці bars, beats, divisions і ticks; відлік починається з `1 1 1 1`.
+- [Apple: Set the bounce range](https://support.apple.com/guide/logicpro/set-the-bounce-range-lgcp190ba9b7/mac) — без обмежень Bounce охоплює проєкт від Start до End; Cycle mode використовує locator positions, а selected regions обмежують bounce range вибраною ділянкою.
+
+## 2026-07-26 — MainStage: перший import WAV
+
+### Brave Web Search та Brave LLM Context
+
+**Queries:**
+
+- `site:support.apple.com/guide/mainstage create concert set patch MainStage Playback plug-in`
+- `site:support.apple.com MainStage add Playback plug-in audio file Playback plug-in`
+- `site:support.apple.com/guide/mainstage Playback plug-in "Sync" off audio playback`
+- `site:support.apple.com/guide/mainstage MainStage create a new empty concert add patch select patch patch list new concert`
+
+**Офіційні результати, використані в `13-mainstage-concert-foundation.md`:**
+
+- [Apple: Add patches in MainStage](https://support.apple.com/guide/mainstage/add-patches-mstg9da503fa/mac) — `Add Patch` (`+`) у верхньому правому куті Patch List і перейменування patch.
+- [Apple: Add a Playback plug-in](https://support.apple.com/nl-nl/guide/mainstage/mstgd241cc7c/mac) — перетягування audio file в Channel Strips створює channel strip із Playback.
+- [Apple: MainStage release notes](https://support.apple.com/en-la/101568) — перетягування stereo audio file до mixer створює stereo Playback channel strip.
+- [Apple: Playback Sync, Snap To, and Play From](https://support.apple.com/guide/mainstage/mainstage-playback-sync-snap-play-parameters-mstge93aad2f/mac) — `Sync: Off` відтворює audio file в recorded tempo.
 
 ## Важлива примітка про попередні файли
 
