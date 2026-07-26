@@ -24,6 +24,9 @@ plugins:
 extra_css:
   - stylesheets/extra.css
 
+extra_javascript:
+  - javascripts/tasklists.js
+
 markdown_extensions:
   - admonition
   - attr_list
@@ -32,6 +35,8 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:mermaid2.fence_mermaid
+  - pymdownx.tasklist:
+      clickable_checkbox: true
   - tables
   - toc:
       permalink: true
