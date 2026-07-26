@@ -1,0 +1,38 @@
+:root {
+  --concert-blue: #2457a6;
+  --concert-ink: #1f2937;
+}
+
+body,
+.wy-nav-content {
+  color: var(--concert-ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.wy-side-nav-search {
+  background: var(--concert-blue);
+}
+
+.wy-nav-side {
+  background: #182435;
+}
+
+.wy-menu-vertical a {
+  line-height: 1.45;
+}
+
+.wy-nav-content {
+  max-width: 980px;
+}
+
+h1, h2, h3 {
+  color: #173f7a;
+}
+
+table {
+  width: 100%;
+}
+
+blockquote {
+  border-left-color: #4a78be;
+}
