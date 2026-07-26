@@ -22,7 +22,7 @@ flowchart LR
 
 ## Поточний практичний етап
 
-Перший WAV, markers, navigation, плавний `Cycle` і повний маршрут AIRSTEP Lite (`A Start`, `B Previous Marker`, `C Next Marker`, `D Cycle`, `E Stop`) уже пройшли test. Наступний практичний етап — [stem workflow першої пісні](30-stems-and-cq12t-mixing.md): спершу один Drum stem як доказ marker import, потім усі вісім. Фактичні параметри та результати пісні зберігаються окремо в [картці «Цілуються хмари»](song-records/01-tsiluyutsia-khmary.md). MIDI Program Change для вибору пісень відкладено до появи кількох song patches і окремого design/test етапу.
+Перший WAV, markers, navigation, плавний `Cycle` і повний маршрут AIRSTEP Lite (`A Start`, `B Previous Marker`, `C Next Marker`, `D Cycle`, `E Stop`) уже пройшли test. Stem export першої пісні також пройшов з першого разу. Наступні покращення зібрані на одній сторінці: [advanced MainStage design](31-advanced-mainstage-design.md). Фактичні параметри та результати пісні зберігаються окремо в [картці «Цілуються хмари»](song-records/01-tsiluyutsia-khmary.md). MIDI Program Change для вибору конкретної пісні відкладено; для звичайного previous/next MainStage має окремі Patch actions.
 
 ## Навігація
 

@@ -2,7 +2,7 @@
 
 ## Мета
 
-Для однієї готової пісні створити **окремий WAV stem для кожної потрібної доріжки**, додати до кожного той самий набір marker information і завантажити їх у вісім `B-Track` channel strips MainStage. Результат: на сцені можна окремо змінювати рівень, `Mute` і `Solo` барабанів, басу, клавіш, бек-вокалу тощо, а MainStage все одно віддає один узгоджений stereo mix у CQ-12T через `Out 13–14`.
+Для однієї готової пісні створити **окремий WAV stem для кожної потрібної доріжки**, додати до кожного той самий набір marker information і завантажити їх у вісім `B-Track` channel strips MainStage. Результат: на сцені можна окремо змінювати рівень, `Mute` і `Solo` барабанів, басу, клавіш, бек-вокалу тощо, а MainStage все одно віддає один узгоджений stereo mix у CQ-12T через уже перевірений Main routing.
 
 Це **не** налаштування восьми незалежних фізичних каналів на CQ-12T або FOH. У цій фазі окремий контроль відбувається в MainStage, а після нього stems сумуються в один stereo output — саме той формат, який користувач обрав для FOH.
 
@@ -42,7 +42,7 @@ flowchart LR
     Markers["Однакові markers\nв кожному stem"]
     MS["MainStage STEM TEST\n8 B-Track strips · Group 1"]
     Mix["Separate level / Mute / Solo\nin MainStage"]
-    CQ["All B-Tracks → Out 13–14\nCQ-12T USB stereo input"]
+    CQ["All B-Tracks → Main\nперевірений CQ-12T USB stereo path"]
 
     Logic --> Cycle --> Stems --> Markers --> MS --> Mix --> CQ
 ```
@@ -159,7 +159,7 @@ Apple описує автоматичне додавання Marker List під 
 1. Працюй тільки в `Backing Tracks — STEM TEST.concert`.
 2. Завантаж stems у `B-Track 1–8` згідно з картою вище. Кожен strip має містити **один** відповідний WAV.
 3. Перейменуй channel strips у Mixer на `Drum`, `Bass`, `Piano`, `Other`, `Finger Snaps`, `Organ`, `Back Vocals`, `Electric Guitar`.
-4. На кожному `B-Track` у рядку `Output` вибери **`Out 13–14`**. Не лишай `Output 1–2` на порожніх/нових B-Tracks: це поверне звук на неправильну USB stereo-pair CQ-12T.
+4. Для поточного успішного Concert не змінюй `Output`: усі stems уже направлені у `Main`, і цей routing працює. Новий B-Track у майбутньому має наслідувати той самий working route. Окремий `BT-MIX Aux → Out 13–14` буде створено лише в копії Concert за [advanced design](31-advanced-mainstage-design.md).
 5. Переконайся, що всі вісім Playback instances мають однаковий `Group` — для цього template очікується `1`.
 6. Для першого test встанови всі faders на `0.0 dB`, `Pan` не змінюй, `Mute` і `Solo` вимкни.
 
@@ -189,7 +189,7 @@ Apple описує автоматичне додавання Marker List під 
 
 - [ ] Вісім strips видно в MainStage та мають зрозумілі назви.
 - [ ] `Solo` і `Mute` кожного strip працюють окремо.
-- [ ] Усі вісім outputs = `Out 13–14`.
+- [ ] Усі вісім strips використовують один working route: зараз `Main`; у майбутній копії — `BT-MIX`.
 - [ ] Усі stems мають однакові markers.
 - [ ] AIRSTEP `A–E` працює так само, як у stereo test.
 - [ ] `Cycle Chorus A` синхронний для всіх stems.
@@ -201,11 +201,11 @@ Apple описує автоматичне додавання Marker List під 
 | --- | --- |
 | Один stem починається пізніше | Export зроблено не з `Cycle Range` або file не починається з `1 1 1 1`. Не компенсуй delay у MainStage; повтори export цього stem. |
 | Marker є лише на Drum | Не роби висновок, що Group поширить markers на інші files. Додай/перевір marker information на кожному stem. |
-| Є звук у MainStage meters, але не в CQ Phones | Перевір `Output` на відповідному B-Track: має бути `Out 13–14`, а не `Output 1–2`. |
+| Є звук у MainStage meters, але не в CQ Phones | Порівняй `Output` проблемного B-Track із working B-Track: у поточному Concert це `Main`. Не змінюй усі outputs навмання. |
 | Stems звучать інакше за master | Спершу перевір `Bypass Effect Plug-ins`, `Include Volume/Pan Automation`, faders і Pan. Не роби EQ-компенсацію, поки не підтверджено правильний export. |
 | Cycle звучить розсинхронно | Зупини E. Перевір спільний Cycle range, спільні marker positions і `Group 1`; не намагайся компенсувати різницею fader або delay. |
 | Потрібен окремий мікс на CQ/FOH для кожного stem | Це інша фаза: потрібен окремий multichannel USB routing plan CQ-12T. Поточний документ зберігає обраний stereo FOH output. |
 
 ## Журнал змін
 
-- 2026-07-26 — створено на прохання користувача після успішного `AIRSTEP FULL ROUTE`. Початкова scope: eight individual stems першої пісні, marker verification на одному stem перед масовим import, окремий MainStage mix у `Out 13–14`.
+- 2026-07-26 — створено на прохання користувача після успішного `AIRSTEP FULL ROUTE`. Початкова scope: eight individual stems першої пісні, marker verification на одному stem перед масовим import і окремий MainStage mix. Після практичного stem-export зафіксовано working route `Output: Main`; окремий `BT-MIX` буде наступною копією Concert.
