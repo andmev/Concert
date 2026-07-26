@@ -67,6 +67,16 @@ stateDiagram-v2
 | Що ще не встановлено | Чи рухаються meters у MainStage; чи CQ Channel 1/2 мають source `USB/SD`; чи отримують Main LR signal; чи підключена та увімкнена фізична акустика |
 | Заборона до діагностики | Не видаляти template `Track 2`–`Track 8`, Aux або Metronome; не міняти sample rate; не змінювати USB routing навмання |
 
+### Уточнення після вимірювання meters
+
+| Факт | Результат |
+| --- | --- |
+| MainStage `Track 1` і `Main` meters під час Play | Рухаються: файл і внутрішній MainStage routing працюють |
+| CQ-12T input / output meters під час того самого Play | Не рухаються: CQ не отримує або не відображає цей USB return signal |
+| CQ `Channel Assignment`: 11/12, 13/14, 15/16 | `11/12 → ST IN`; `13/14 → Out 5/6`; `15/16 → Main LR (Stereo L/R)` |
+| Значення `Channel Assignment` | Це CQ → Mac USB sends (upstream), а не вибір пари, яку MainStage повертає з Mac у CQ. Їх не змінювати для вирішення тиші. |
+| Робоча гіпотеза | MainStage `Main` виходить не на ту пару USB channels, яку користувач очікує для playback (у Logic Pro використовується output pair `13/14`). Гіпотеза ще не підтверджена переглядом MainStage audio routing. |
+
 Це **ще не** підтвердження готовності CQ-12T до виступу: Allen & Heath на сторінці Resources поки не верифікував його повну роботу з macOS Tahoe 26.
 
 ### Як знайти `Audio MIDI Setup` і прочитати `Format` CQ-12T
