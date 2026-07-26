@@ -6,7 +6,7 @@
 flowchart LR
     F0["Фаза 0<br/>Безпека і сумісність"] --> F1["Фаза 1<br/>Один stereo backing track"]
     F1 --> Live["Домашня репетиція<br/>і сценічні чеклісти"]
-    Live --> F2["Фаза 2<br/>Stems та обробка в MainStage"]
+    Live --> F2["Фаза 2<br/>Stems та окремий мікс у MainStage"]
     F1 -. "окрема майбутня тема" .-> ST["Stage Traxx 4<br/>backup plan"]
 ```
 
@@ -35,7 +35,7 @@ flowchart LR
 
 ## Фаза 2 — розширена система
 
-17. `30-stems-and-cq12t-mixing.md` — експорт і програвання stems, routing до CQ-12T, індивідуальний контроль; починається лише після успішної Фази 1.
+17. [`30-stems-and-cq12t-mixing.md`](30-stems-and-cq12t-mixing.md) — експорт і програвання stems, спільні markers, індивідуальний MainStage control та stereo routing до CQ-12T. Активовано 2026-07-26 після успішної Фази 1.
 18. `31-mainstage-live-vocal-and-guitar.md` — перенесення обробки гітари й вокалу у MainStage з окремим планом rollback до TC-Helicon.
 
 ## Окрема майбутня тема

@@ -68,4 +68,4 @@
 
 ## Наступна дія
 
-Наступний етап — повний маршрут `B–E` у test Concert: `B = Previous Marker (CC 23)`, `C = Next Marker (CC 24)`, `D = Cycle (CC 25)`, `E = Stop (CC 26)`. Усі — `Toggle Mode: Off`, `Press`, `MIDI`, `ALL`, `Control Change`, channel `1`, value `127`. Кожну кнопку прив’язати до відповідного видимого screen control і перевірити окремо, потім виконати `FULL ROUTE`. `A = Start (CC 22)` не змінювати. LED Lite не вважати індикатором playback. Factory reset не потрібен; не видаляти local preset slots.
+`FULL ROUTE: Pass`: `A = Start`, `B = Previous Marker`, `C = Next Marker`, `D = Cycle`, `E = Stop`. Під час playback один B повертає до початку поточної marker-секції, два B переходять на попередню — це прийнята й задокументована поведінка цього test. Наступний етап — [advanced stem workflow](../30-stems-and-cq12t-mixing.md): окремі WAV для всіх восьми tracks, однакові markers і окремий MainStage mix. MIDI `Program Change` для вибору наступної/довільної пісні користувач свідомо відклав: його не налаштовувати до появи кількох готових song patches і окремого дослідження схеми для ~25 пісень.

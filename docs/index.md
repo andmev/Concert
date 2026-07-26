@@ -18,11 +18,11 @@ flowchart LR
 
 ## Поточний фокус
 
-Базова фаза використовує **один готовий stereo backing track на пісню**. Stems, click, індивідуальний мікс у MainStage і Stage Traxx 4 залишаються окремими наступними темами.
+Базова stereo фаза завершена для першої пісні. Активна Фаза 2: [окремі stems у MainStage](30-stems-and-cq12t-mixing.md) — вісім individual WAV-файлів, спільні markers, окремі `Mute`/`Solo`/level у MainStage й один stereo output у CQ-12T. Stage Traxx 4 та окремі фізичні stem-канали для CQ/FOH залишаються майбутніми темами.
 
 ## Поточний практичний етап
 
-Перший WAV, markers, navigation і плавний `Cycle` уже пройшли test. Наступний ізольований тест — [під’єднати AIRSTEP Lite як Bluetooth MIDI](16-airstep-lite-mapping.md#крок-1-підєднати-airstep-lite-як-bluetooth-midi). Фактичні параметри та результати першої пісні зберігаються окремо в [картці «Цілуються хмари»](song-records/01-tsiluyutsia-khmary.md).
+Перший WAV, markers, navigation, плавний `Cycle` і повний маршрут AIRSTEP Lite (`A Start`, `B Previous Marker`, `C Next Marker`, `D Cycle`, `E Stop`) уже пройшли test. Наступний практичний етап — [stem workflow першої пісні](30-stems-and-cq12t-mixing.md): спершу один Drum stem як доказ marker import, потім усі вісім. Фактичні параметри та результати пісні зберігаються окремо в [картці «Цілуються хмари»](song-records/01-tsiluyutsia-khmary.md). MIDI Program Change для вибору пісень відкладено до появи кількох song patches і окремого design/test етапу.
 
 ## Навігація
 
