@@ -109,6 +109,22 @@ flowchart LR
 - Виправлено термінологію Zoom: у всіх документах для зовнішнього stereo line output використовується `OUTPUT A L/R`, а не двозначне `Output A/B`.
 - Усі згадки про TC-Helicon routing позначено як заплановані до окремої перевірки. До розбору повного офіційного manual і домашнього тесту документація не визначає кількість кабелів, роз’єми або окреме/змішане виведення гітари та вокалу.
 
+## 2026-07-26 — CQ-12T: діагностика помилки sample rate
+
+### Brave LLM Context
+
+**Query:** `Allen Heath CQ-12T USB sample rate 48 96 kHz official user guide and MainStage audio preferences sample rate official Apple`
+
+**Офіційний результат, використаний у документації:**
+
+- [CQ: Multitrack Recording and Playback from SD Card](https://support.allen-heath.com/hc/en-gb/articles/19853352600337-CQ-Multitrack-Recording-and-Playback-from-SD-Card) — у `CONFIG > Digital Audio > USB/SD` обирається `Sample Rate`; CQ-12T підтримує 16×16 USB-аудіо на 48 або 96 kHz. В інструкції не стверджується причина конкретної помилки MainStage, тому в документації це позначено як діагностика, а не встановлений діагноз.
+
+### Brave Web Search
+
+**Query:** `site:support.apple.com/guide/mainstage "Sample Rate" "Audio Preferences" MainStage`
+
+**Результат:** точного актуального результату Apple Search не повернув. Для кроків MainStage використовуємо лише перевірені екрани встановленого MainStage і не приписуємо Apple непідтверджені назви параметрів.
+
 ## Важлива примітка про попередні файли
 
 Файли `03-glossary.md`, `05-audio-safety-and-power.md` і `06-cables-and-stage-checklists.md` уже містять прямі офіційні посилання. Їхня джерельна база повторно перевірена через Brave 2026-07-26 цим журналом. До створення наступного документа застосовується обов’язковий research gate з [політики джерел](01-evidence-policy.md#evidence-check).
