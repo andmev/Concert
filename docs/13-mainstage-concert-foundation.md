@@ -2,11 +2,11 @@
 
 ## Мета
 
-Створити **окремий тестовий Concert**, додати до нього одну Patch «Цілуються хмари» та перевірити, що MainStage 4.3 приймає готовий WAV як stereo Playback channel strip. На цьому етапі не налаштовуються педаль, автоматичні переходи, повтор приспіву, гітара, вокал або концерт із 25 пісень.
+Використати фактичну структуру шаблону `8 Backing Tracks` для import одного stereo WAV у перший Playback strip. На цьому етапі не налаштовуються педаль, автоматичні переходи, повтор приспіву, гітара, вокал або концерт із 25 пісень.
 
 ## Результат, який має бути наприкінці
 
-У MainStage існує збережений test Concert з однією Patch і одним завантаженим файлом `Цілуються-хмари_BT_stereo_24bit.wav`. Це підтверджує import. Відтворення через фізичну акустику — наступний, окремий тест.
+У MainStage існує збережений `Backing Tracks — TEST.concert` з Patch `01 — Цілуються хмари`. У його першому Playback strip завантажено `Цілуються-хмари_BT_stereo_24bit.wav`, `Sync` вимкнено, а фізичне відтворення через акустику ще не запускалося.
 
 ## Передумови
 
@@ -18,87 +18,86 @@
 ## Офіційні джерела
 
 - [Apple: Overview of Edit mode](https://support.apple.com/guide/mainstage/overview-of-edit-mode-mstg9b39ca1c/3.5/mac/10.15), перевірено 2026-07-26 — в `Edit mode` додають і організовують patches та channel strips.
-- [Apple: Add patches in MainStage](https://support.apple.com/guide/mainstage/add-patches-mstg9da503fa/mac), перевірено 2026-07-26 — кнопка `Add Patch` (`+`) розміщена у верхньому правому куті `Patch List`; patch можна перейменувати подвійним кліком.
-- [Apple: Add a Playback plug-in](https://support.apple.com/nl-nl/guide/mainstage/mstgd241cc7c/mac), перевірено 2026-07-26 — audio file можна перетягнути до `Channel Strips` area; MainStage створює channel strip із Playback plug-in. Playback — instrument plug-in на software instrument channel strip.
-- [Apple: MainStage release notes](https://support.apple.com/en-la/101568), перевірено 2026-07-26 — перетягування stereo audio file до mixer створює stereo Playback channel strip.
-- [Apple: Playback Sync, Snap To, and Play From](https://support.apple.com/guide/mainstage/mainstage-playback-sync-snap-play-parameters-mstge93aad2f/mac), перевірено 2026-07-26 — при `Sync: Off` файл відтворюється у своєму записаному темпі.
+- [Apple: MainStage release notes](https://support.apple.com/en-us/101568), перевірено 2026-07-26 — офіційно згадує шаблон `8 Backing Tracks` у поточних release notes.
+- [Apple: Add patches in MainStage](https://support.apple.com/guide/mainstage/add-patches-mstg9da503fa/mac), перевірено 2026-07-26 — кнопка `Add Patch` (`+`) розміщена у верхньому правому куті `Patch List`; джерело використаємо лише після перевірки фактичного вмісту шаблону.
+- [Apple: Add a Playback plug-in](https://support.apple.com/nl-nl/guide/mainstage/mstgd241cc7c/mac), перевірено 2026-07-26 — audio file можна перетягнути до Instrument slot з Playback plug-in; це завантажує файл у наявний Playback instance.
+- [Apple: Playback Sync, Snap To, and Play From](https://support.apple.com/guide/mainstage/mainstage-playback-sync-snap-play-parameters-mstge93aad2f/mac), перевірено 2026-07-26 — при `Sync: Off` файл відтворюється у своєму recorded tempo.
 
 ## Важливе рішення цього тесту
 
-Перший backing track має один сталий темп `70 BPM`, але цей тест перевіряє **файл як записаний мікс**, а не синхронізацію музичних секцій. Тому після import встановлюємо `Sync: Off`. Це не остаточне рішення для повтору приспіву — його буде обрано й протестовано в окремому документі.
+У фактичному template є один Concert `Untitled Concert`, одна Patch `Song One` і вісім Playback strips `Track 1`–`Track 8`, усі виведені до `Main`. Для одного готового stereo backing track використовуємо **лише `Track 1`**. `Track 2`–`Track 8`, Aux sends та інші routing controls не змінюємо. Після import встановлюємо `Sync: Off`, щоб файл ішов у своєму записаному темпі. Це не остаточне рішення для повтору приспіву.
 
 ## Кроки
 
 ```mermaid
 flowchart LR
-    File["WAV пройшов desktop listening test"] --> Concert["Створити окремий test Concert"]
-    Concert --> Patch["Додати та назвати Patch"]
-    Patch --> Drag["Перетягнути WAV у Channel Strips"]
-    Drag --> Playback["Підтвердити Playback channel strip"]
-    Playback --> Sync["Sync: Off"]
-    Sync --> Save["Зберегти test Concert"]
-    Save --> ImportPass["Import test: Pass"]
+    File["WAV пройшов desktop listening test"] --> Template["8 Backing Tracks: Song One + Track 1–8"]
+    Template --> Save["Зберегти TEST.concert"]
+    Save --> Rename["Song One → 01 — Цілуються хмари"]
+    Rename --> Load["Завантажити WAV у Playback: Track 1"]
+    Load --> Sync["Sync: Off"]
+    Sync --> ImportPass["Import test: Pass"]
 ```
 
-### 1. Створи ізольований test Concert
+### 1. Створи ізольований test Concert з перевіреного шаблону
 
 1. Відкрий MainStage.
-2. Якщо MainStage показує вибір шаблону для нового Concert, вибери найпростіший порожній шаблон, який називається на твоєму екрані `Empty Concert` або аналогічно. Не обирай guitar, vocal, keyboard чи концертний template з готовими effects.
-3. Якщо MainStage вже відкрив інший Concert, у menu bar вибери `File > New` і в діалозі обери найпростіший порожній template.
+2. Якщо MainStage показує вибір шаблону для нового Concert, вибери **`8 Backing Tracks`**.
+3. Якщо MainStage вже відкрив інший Concert, у menu bar вибери `File > New`, а в діалозі — **`8 Backing Tracks`**.
 4. Відразу збережи новий Concert: `File > Save`.
 5. Назви його, наприклад, `Backing Tracks — TEST.concert`. Збережи окремо від оригінального Logic Pro project і майбутнього основного Concert.
 
-**Перевірка:** у title bar MainStage видно назву test Concert, а не назву твоєї пісні або невідомого template.
+**Перевірка:** у title bar MainStage видно назву test Concert.
 
-### 2. Перейди в Edit mode і створи Patch пісні
+### 2. Збережи Concert і перейменуй єдину Patch
 
-1. У верхній частині вікна MainStage знайди та натисни `Edit`.
-2. Зліва знайди `Patch List`.
-3. Якщо в списку вже є один patch, натисни його один раз. Якщо список порожній, натисни кнопку `+` у верхньому правому куті `Patch List`, щоб додати patch.
-4. Двічі натисни назву вибраного patch у `Patch List`.
-5. Впиши точну назву: `01 — Цілуються хмари` і натисни `Return`.
+На зафіксованому екрані видно `Untitled Concert` і одну Patch `Song One`.
 
-**Перевірка:** у `Patch List` є один чітко названий patch. Не додавай Set і не додавай наступні пісні.
+1. У menu bar вибери `File > Save`.
+2. Назви файл `Backing Tracks — TEST.concert` і збережи його окремо від Logic Pro project.
+3. У `Patch List` зліва двічі натисни `Song One`.
+4. Впиши: `01 — Цілуються хмари`.
+5. Натисни `Return`.
 
-### 3. Імпортуй WAV перетягуванням
+**Перевірка:** зліва під Concert показано `01 — Цілуються хмари`.
 
-1. Відкрий Finder так, щоб у ньому було видно `Цілуються-хмари_BT_stereo_24bit.wav`.
-2. Розмісти Finder і MainStage поруч, щоб одночасно було видно файл та центральну область `Channel Strips` у MainStage.
-3. У MainStage переконайся, що у `Patch List` вибрано `01 — Цілуються хмари`.
-4. У Finder затисни WAV-файл і перетягни його в **порожнє місце** центральної області `Channel Strips` MainStage. Не перетягуй його на `Patch List`, не на `Workspace` і не на будь-яку кнопку.
-5. Відпусти файл у `Channel Strips`.
+### 3. Завантаж WAV тільки в `Track 1`
 
-**Очікуваний результат:** з’являється новий channel strip з інструментом `Playback`. Для stereo WAV MainStage має створити stereo Playback channel strip.
+На screenshot центральний mixer уже містить вісім Playback strips `Track 1`–`Track 8`. Не додавай новий channel strip.
 
-### 4. Перевір Playback і вимкни Sync
+1. Відкрий Finder і знайди `Цілуються-хмари_BT_stereo_24bit.wav`.
+2. Розмісти Finder так, щоб він не закривав центральний mixer MainStage.
+3. Переконайся, що вибрана Patch `01 — Цілуються хмари`.
+4. У центральному mixer знайди **перший** strip, підписаний `Track 1`.
+5. Перетягни WAV із Finder точно на його зелену кнопку/slot `Playback`.
+6. Не відпускай файл на `Track 2`–`Track 8`, `Main`, `Aux`, `Patch List` або `Workspace`.
 
-1. Натисни назву або slot `Playback` у створеному channel strip, щоб відкрити його вікно.
-2. Знайди параметр `Sync`.
-3. Встанови `Sync: Off`.
-4. Не змінюй `Tempo`, `Flex Mode`, markers, `Snap To` або `Play From` на цьому етапі.
-5. У полі `File` або у верхній частині Playback переконайся, що видно назву `Цілуються-хмари_BT_stereo_24bit.wav`.
+**Очікуваний результат:** MainStage завантажує WAV у Playback instance `Track 1`. Інші сім tracks залишаються без файлів.
 
-**Перевірка:** Playback показує саме потрібний файл, а `Sync` має значення `Off`.
+### 4. Перевір файл у Playback та встанови `Sync: Off`
 
-### 5. Збережи й зафіксуй import result
+1. У `Track 1` натисни зелену кнопку `Playback`, щоб відкрити вікно plug-in.
+2. Знайди поле `File` і переконайся, що воно показує `Цілуються-хмари_BT_stereo_24bit.wav`.
+3. Знайди `Sync` і встанови значення `Off`.
+4. Не змінюй `Snap To`, `Play From`, markers, Aux sends, рівні `Track 1` або `Main`.
+5. Закрий вікно plug-in звичайною червоною кнопкою macOS, потім виконай `File > Save`.
 
-1. Вибери `File > Save`.
-2. У картці пісні запиши `MainStage import test: Pass` лише якщо WAV видно у Playback без повідомлення про помилку.
-3. Поки що не натискай Play і не перевіряй фізичний звук, якщо ще не виконано окремого безпечного підключення CQ-12T до домашньої акустики.
+**Import test: Pass**, якщо файл видно у `Track 1` без повідомлення про помилку.
 
 ## Типові проблеми
 
 | Симптом | Безпечна дія |
 | --- | --- |
-| WAV не перетягується або не з’являється Playback | Не переробляй WAV. Перевір, що виділено правильний patch та файл відпущено саме в `Channel Strips`; потім повтори один раз. |
-| З’являється повідомлення про неправильний формат | Не конвертуй файл навмання. Зафіксуй точний текст помилки й повернись до картки пісні. |
-| Створився channel strip, але не stereo | Зупинись і зафіксуй, як він позначений у MainStage; не переходь до playback test. |
-| Не видно `Sync` | Відкрий саме plug-in `Playback`, а не загальні settings patch або channel strip. |
+| Немає `8 Backing Tracks` у списку | Не вибирай схожий template. Зафіксуй повний список template Concerts і версію MainStage. |
+| Після вибору template MainStage показує warning | Не змінюй параметри. Зафіксуй точний текст warning та screenshot. |
+| Файл завантажився не в `Track 1` | Не запускай playback. Видали файл лише з помилкового Playback instance через його офіційне `Remove File`, потім повтори import у `Track 1`. |
+| Не видно поля `File` або `Sync` | Переконайся, що відкрито вікно plug-in `Playback` саме на `Track 1`, а не загальні settings Patch або Channel Strip. |
 
 ## Межа цього документа
 
-Цей документ завершується import test. Тільки після його `Pass` буде створено окрему процедуру безпечного фізичного playback test через CQ-12T. Це навмисно не змішує перевірку файлу з перевіркою кабелів, виходів і рівнів.
+Цей документ завершується import test. Тільки після `Pass` створюється окрема процедура безпечного фізичного playback test через CQ-12T. Це навмисно не змішує перевірку файлу з перевіркою кабелів, виходів і рівнів.
 
 ## Журнал змін
 
-- 2026-07-26 — перша версія; перший test Concert і import одного WAV.
+- 2026-07-26 — шаблон `Empty Concert` вилучено як непідтверджений. Фактичний список MainStage 4.3 користувача містить `8 Backing Tracks`.
+- 2026-07-26 — screenshot користувача зафіксував фактичну структуру template: `Untitled Concert`, `Song One`, `Track 1`–`Track 8` із Playback та виходом до `Main`. Процедура import оновлена під цю структуру.

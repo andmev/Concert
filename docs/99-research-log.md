@@ -178,6 +178,27 @@ flowchart LR
 - [Apple: MainStage release notes](https://support.apple.com/en-la/101568) — перетягування stereo audio file до mixer створює stereo Playback channel strip.
 - [Apple: Playback Sync, Snap To, and Play From](https://support.apple.com/guide/mainstage/mainstage-playback-sync-snap-play-parameters-mstge93aad2f/mac) — `Sync: Off` відтворює audio file в recorded tempo.
 
+## 2026-07-26 — виправлення: MainStage template для першого test Concert
+
+### Brave Web Search та Brave LLM Context
+
+**Queries:**
+
+- `site:support.apple.com/guide/mainstage "8 Backing Tracks" MainStage template`
+- `Apple MainStage 4.3 templates "8 Backing Tracks" "Lead Vocal & One Backing Track" official`
+
+**Факти:**
+
+- Точний список template Concerts наданий користувачем із його MainStage 4.3. У ньому **немає** `Empty Concert`; попередня згадка цього template була помилкою і вилучена.
+- [Apple MainStage release notes](https://support.apple.com/en-us/101568) офіційно згадують `8 Backing Tracks`, тож його існування підтверджено.
+- Офіційні результати пошуку не описують поточний внутрішній routing, Patch List або Channel Strips цього template. До screenshot фактичного Concert документація не припускає його структуру.
+
+### Фактичний screenshot користувача після вибору template
+
+- Template `8 Backing Tracks` у встановленому MainStage 4.3 відкриває `Untitled Concert` з однією Patch `Song One`.
+- У центральному mixer видно вісім Playback strips: `Track 1`–`Track 8`; вони виведені до `Main`.
+- Цей факт є основою лише для поточного проєкту та версії MainStage користувача. Import-інструкцію оновлено: один stereo backing track завантажується в `Track 1`; інші сім strips не змінюються.
+
 ## Важлива примітка про попередні файли
 
 Файли `03-glossary.md`, `05-audio-safety-and-power.md` і `06-cables-and-stage-checklists.md` уже містять прямі офіційні посилання. Їхня джерельна база повторно перевірена через Brave 2026-07-26 цим журналом. До створення наступного документа застосовується обов’язковий research gate з [політики джерел](01-evidence-policy.md#evidence-check).
