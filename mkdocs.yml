@@ -3,9 +3,6 @@ site_description: Українська покрокова документаці
 site_author: andmev
 site_url: https://andmev.github.io/Concert/
 
-repo_name: andmev/Concert
-repo_url: https://github.com/andmev/Concert
-
 docs_dir: docs
 site_dir: site
 use_directory_urls: true
@@ -29,8 +26,6 @@ theme:
         icon: material/brightness-4
         name: Увімкнути світлу тему
   features:
-    - navigation.tabs
-    - navigation.sections
     - navigation.top
     - navigation.tracking
     - search.highlight
@@ -61,23 +56,3 @@ markdown_extensions:
   - tables
   - toc:
       permalink: true
-
-nav:
-  - Головна: index.md
-  - Початок:
-      - Контекст проєкту: 00-project-context.md
-      - Правила доказовості: 01-evidence-policy.md
-      - Карта документації: 02-documentation-map.md
-  - Фаза 0 — перевірки:
-      - Словник: 03-glossary.md
-      - Реєстр сумісності: 04-compatibility-register.md
-      - Аудіобезпека та живлення: 05-audio-safety-and-power.md
-      - Кабелі та чеклісти сцени: 06-cables-and-stage-checklists.md
-  - Фаза 1 — базова система:
-      - Перевірка проєкту Logic Pro: 10-logic-preflight.md
-      - Експорт stereo backing track: 11-logic-export-stereo-backing-track.md
-      - Перший test Concert у MainStage: 13-mainstage-concert-foundation.md
-  - Картки пісень:
-      - Цілуються хмари: song-records/01-tsiluyutsia-khmary.md
-  - Дослідження:
-      - Журнал досліджень: 99-research-log.md
