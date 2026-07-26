@@ -6,6 +6,10 @@
   --md-primary-fg-color--dark: #173f7a;
 }
 
+[data-md-color-scheme="slate"] {
+  --concert-ink: #e8edf5;
+}
+
 .md-typeset {
   color: var(--concert-ink);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -36,6 +40,12 @@
 .md-typeset h2,
 .md-typeset h3 {
   color: #173f7a;
+}
+
+[data-md-color-scheme="slate"] .md-typeset h1,
+[data-md-color-scheme="slate"] .md-typeset h2,
+[data-md-color-scheme="slate"] .md-typeset h3 {
+  color: #9ec5fe;
 }
 
 .md-typeset blockquote {
