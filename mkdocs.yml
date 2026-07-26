@@ -16,17 +16,28 @@ theme:
   highlightjs: true
   include_homepage_in_sidebar: false
 
+plugins:
+  - search
+  - mermaid2:
+      version: '10.4.0'
+
 extra_css:
   - stylesheets/extra.css
 
 markdown_extensions:
   - admonition
   - attr_list
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid_custom
   - tables
   - toc:
       permalink: true
 
 nav:
+  - Головна: index.md
   - Початок:
       - Контекст проєкту: 00-project-context.md
       - Правила доказовості: 01-evidence-policy.md

@@ -23,6 +23,17 @@ mkdocs serve
 
 Кожен push у гілку `main` запускає workflow [Deploy documentation to GitHub Pages](.github/workflows/deploy-pages.yml). Він перевіряє збирання документації та публікує її в GitHub Pages.
 
+## Mermaid-діаграми
+
+Mermaid підтримується у всіх Markdown-файлах `docs/`. Додайте діаграму в fenced-блоці з мовою `mermaid`:
+
+````markdown
+```mermaid
+flowchart LR
+    A[Підготовка] --> B[Репетиція] --> C[Виступ]
+```
+````
+
 ## Межі документації
 
 Поточний пріоритет — базова stereo-конфігурація: один готовий backing track на пісню. Stems, click, індивідуальний мікс і Stage Traxx 4 належать до наступних окремих фаз.

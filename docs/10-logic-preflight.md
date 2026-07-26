@@ -34,6 +34,17 @@
 
 ## Кроки
 
+```mermaid
+flowchart TD
+    Open["Відкрити одну пісню в Logic Pro"] --> List["Зафіксувати список tracks"]
+    List --> Solo["Прослухати неясні tracks через Solo"]
+    Solo --> Live{"Основний вокал і жива<br/>акустична гітара відсутні?"}
+    Live -->|"Ні / неясно"| Blocked["Blocked: content decision"]
+    Live -->|"Так"| Tempo["Перевірити Tempo track"]
+    Tempo --> Ready["Ready for stereo export"]
+    Ready --> Export["Документ 11"]
+```
+
 ### 1. Зафіксуй, яку саме пісню перевіряєш
 
 1. Відкрий потрібний проєкт у Logic Pro.

@@ -34,6 +34,25 @@ _Остання фіксація вимог: 26 липня 2026._
 
 ## Поточна базова конфігурація
 
+```mermaid
+flowchart TB
+    subgraph Full["Повний виступ"]
+        Mac1["MacBook Pro<br/>MainStage"] -->|"USB"| CQ["Allen & Heath<br/>CQ-12T"]
+        Guitar1["Ovation guitar"] --> TC1["TC-Helicon<br/>(routing to be confirmed)"]
+        Mic1["Shure SM58"] --> TC1
+        TC1 --> CQ
+        CQ -->|"Stereo mix"| FOH["FOH майданчика"]
+    end
+
+    subgraph Small["Малий виступ"]
+        Mac2["MacBook Pro<br/>MainStage"] -->|"USB"| Zoom["Zoom AMS-24"]
+        Guitar2["Ovation guitar"] --> TC2["TC-Helicon<br/>(routing to be confirmed)"]
+        Mic2["Shure SM58"] --> TC2
+        TC2 --> Zoom
+        Zoom -->|"OUTPUT A L/R"| Venue["Bose S1 Pro+ або<br/>обладнання майданчика"]
+    end
+```
+
 ### Повний виступ із CQ-12T
 
 ```text

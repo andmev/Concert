@@ -2,6 +2,18 @@
 
 Цей файл є журналом фактів, а не припущень. Записуй дату, версії, конкретну схему, результат і посилання на джерело.
 
+```mermaid
+stateDiagram-v2
+    [*] --> NotTested: пристрій або схема
+    NotTested --> HomeTest: документальна перевірка
+    HomeTest --> Pass: тест успішний
+    HomeTest --> NeedsFollowUp: помилка або неясний результат
+    NeedsFollowUp --> HomeTest: виправлення і повторний тест
+    Pass --> Rehearsal: повна домашня репетиція
+    Rehearsal --> ShowReady: Pass
+    Rehearsal --> NeedsFollowUp: Fail
+```
+
 | Компоненти | Поточний статус | Що потрібно зробити перед концертом | Офіційна основа |
 | --- | --- | --- | --- |
 | MainStage 4.3 + macOS Tahoe 26.5.2 | Встановлено; робота з цим MacBook ще не зафіксована тестом | Створити тестовий Concert, відтворити WAV/AIFF, перезапустити програму, перевірити audio device | [Apple MainStage Support](https://support.apple.com/mainstage) |

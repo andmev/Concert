@@ -42,6 +42,17 @@
 
 ## Кроки
 
+```mermaid
+flowchart LR
+    Ready["Ready for stereo export"] --> Range["Перевірити Start / End<br/>та Cycle mode"]
+    Range --> Bounce["File → Bounce →<br/>Project or Section"]
+    Bounce --> Settings["PCM WAVE · stereo · 24-bit<br/>Normalize: Off"]
+    Settings --> Listen["Прослухати готовий .wav"]
+    Listen --> Check{"Початок, кінець,<br/>вміст і рівень правильні?"}
+    Check -->|"Так"| Candidate["Кандидат для<br/>MainStage import test"]
+    Check -->|"Ні"| Logic["Повернутися до Logic Pro"]
+```
+
 ### 1. Перевір межі export
 
 1. Відкрий перевірену пісню в Logic Pro.

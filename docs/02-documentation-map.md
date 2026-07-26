@@ -2,6 +2,14 @@
 
 Це план файлів, які потрібно створювати послідовно. Кожен файл починається блоком `Пов’язані документи` й не дублює зміст інших файлів.
 
+```mermaid
+flowchart LR
+    F0["Фаза 0<br/>Безпека і сумісність"] --> F1["Фаза 1<br/>Один stereo backing track"]
+    F1 --> Live["Домашня репетиція<br/>і сценічні чеклісти"]
+    Live --> F2["Фаза 2<br/>Stems та обробка в MainStage"]
+    F1 -. "окрема майбутня тема" .-> ST["Stage Traxx 4<br/>backup plan"]
+```
+
 ## Фаза 0 — передумови та перевірки { #phase-0 }
 
 1. `03-glossary.md` — дуже короткий словник: backing track, stereo/mono, stem, patch, set, concert, channel strip, bus, gain, latency, FOH.

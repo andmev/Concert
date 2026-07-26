@@ -12,6 +12,16 @@
 
 ## Терміни
 
+```mermaid
+flowchart TB
+    Audio["Аудіосигнал"] --> Source["Backing track<br/>Гітара<br/>Вокал"]
+    Source --> Interface["CQ-12T або Zoom AMS-24"]
+    Interface --> Audience["Bose або FOH"]
+    Control["Керувальний сигнал"] --> MIDI["AIRSTEP Lite<br/>Bluetooth MIDI"]
+    MIDI --> MainStage["MainStage<br/>Concert → Set → Patch"]
+    MainStage --> Audio
+```
+
 | Термін | Просте пояснення саме для цієї системи |
 | --- | --- |
 | **Backing track** | Попередньо підготовлений аудіофайл, який MainStage відтворює під час виступу. У базовій фазі це один готовий stereo-файл на пісню без твоєї живої акустичної гітари та основного вокалу. |
