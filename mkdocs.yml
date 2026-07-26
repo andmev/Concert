@@ -76,5 +76,8 @@ nav:
   - Фаза 1 — базова система:
       - Перевірка проєкту Logic Pro: 10-logic-preflight.md
       - Експорт stereo backing track: 11-logic-export-stereo-backing-track.md
+      - Перший test Concert у MainStage: 13-mainstage-concert-foundation.md
+  - Картки пісень:
+      - Цілуються хмари: song-records/01-tsiluyutsia-khmary.md
   - Дослідження:
       - Журнал досліджень: 99-research-log.md
