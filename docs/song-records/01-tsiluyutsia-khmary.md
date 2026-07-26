@@ -52,7 +52,7 @@
 | Release до `Chorus B` | `Pass`: після вимкнення `Cycle` playback переходить у `Chorus B` |
 | Межі marker-loop | `Pass`: плавне повернення `Chorus B → Chorus A`; без чутних клацань, тріску, обриву або паузи. Користувач чує це як плавний fade. |
 | AIRSTEP Lite Bluetooth MIDI | `Pass`: macOS показує `AIRSTEP Lite` з `MIDI Input/MIDI Output`; дія `Disconnect` підтверджує active connection. |
-| AIRSTEP A → Play | `Fail` (діагностика): MainStage показав Parameter Mapping browser, але MIDI In від footswitch ще не підтверджено. Наступна перевірка — `Audio MIDI Setup > Test MIDI Setup`. |
+| AIRSTEP A → Play | `Pass`: у `Local Preset 2 (MIDI CC)`, `Toggle Mode: Off`, `A` надсилає `CC 22 = 127`. Три незалежні повтори «A → start; екранний `Stop`; A → start» пройшли. MainStage assignment не перестворювався. LED Lite світиться постійно в `Normal Mode`; це не впливає на transport, але LED не вважається індикатором стану MainStage без окремо підтвердженого двостороннього MIDI feedback. |
 
 ## Карта структури
 
@@ -68,4 +68,4 @@
 
 ## Наступна дія
 
-Наступний етап — незалежно перевірити `MIDI In` від лівої кнопки AIRSTEP у `Audio MIDI Setup > Test MIDI Setup`. До підтвердження MIDI input не призначати кнопку в MainStage та не видаляти template tracks, Aux або Metronome у робочому Concert.
+Наступний етап — повний маршрут `B–E` у test Concert: `B = Previous Marker (CC 23)`, `C = Next Marker (CC 24)`, `D = Cycle (CC 25)`, `E = Stop (CC 26)`. Усі — `Toggle Mode: Off`, `Press`, `MIDI`, `ALL`, `Control Change`, channel `1`, value `127`. Кожну кнопку прив’язати до відповідного видимого screen control і перевірити окремо, потім виконати `FULL ROUTE`. `A = Start (CC 22)` не змінювати. LED Lite не вважати індикатором playback. Factory reset не потрібен; не видаляти local preset slots.
