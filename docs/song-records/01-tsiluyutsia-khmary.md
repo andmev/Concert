@@ -42,8 +42,9 @@
 | Mode | `Automatic` |
 | Desktop listening test | `Pass` |
 | MainStage import test | `Pass` |
-| Перший playback test через CQ-12T | `Needs follow-up`: WAV запускався кнопкою `Play` у Playback, але звуку не було чутно; точна ланка тиші ще не визначена |
+| Перший playback test через CQ-12T | `Pass` для появи звуку: у `Track 1 > Output` обрано `Out 13–14`, після чого звук із MainStage з’явився через CQ dedicated stereo `USB L/R`. Повний test рівнів у `Phones` ще не записано. |
+| Monitoring через `Phones` | `Pass`: користувач підтвердив роботу після вибору `Headphone Output > Source: Main LR`. Screenshot із `Listen` зроблено до цього перемикання. |
 
 ## Наступна дія
 
-Провести поетапну перевірку MainStage → USB 1/2 → CQ Channel 1/2 → Main LR → фізична акустика. До неї не видаляти template tracks, Aux або Metronome.
+Виконати [карту структури пісні в Logic Pro](../12-song-structure-sheet.md): позначити межі секцій і записати, чи та куди можна повторювати кожен приспів. До неї не видаляти template tracks, Aux або Metronome.

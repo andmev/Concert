@@ -6,7 +6,7 @@
 
 ## Результат, який має бути наприкінці
 
-У MainStage існує збережений `Backing Tracks — TEST.concert` з Patch `01 — Цілуються хмари`. У його першому Playback strip завантажено `Цілуються-хмари_BT_stereo_24bit.wav`, `Sync` вимкнено, а фізичне відтворення через акустику ще не запускалося.
+У MainStage існує збережений `Backing Tracks — TEST.concert` з Patch `01 — Цілуються хмари`. У його першому Playback strip завантажено `Цілуються-хмари_BT_stereo_24bit.wav`, `Sync` вимкнено, а `Output` цього strip встановлено на `Out 13–14` для CQ-12T.
 
 ## Передумови
 
@@ -79,8 +79,10 @@ flowchart LR
 1. У `Track 1` натисни зелену кнопку `Playback`, щоб відкрити вікно plug-in.
 2. Знайди поле `File` і переконайся, що воно показує `Цілуються-хмари_BT_stereo_24bit.wav`.
 3. Знайди `Sync` і встанови значення `Off`.
-4. Не змінюй `Snap To`, `Play From`, markers, Aux sends, рівні `Track 1` або `Main`.
-5. Закрий вікно plug-in звичайною червоною кнопкою macOS, потім виконай `File > Save`.
+4. Закрий вікно plug-in звичайною червоною кнопкою macOS.
+5. У channel strip `Track 1` знайди нижній блок `Output`. Натисни його поточне значення та обери **`Out 13–14`**. Саме це значення фактично дало звук у CQ-12T цього проєкту: за офіційною таблицею CQ USB 13/14 = dedicated `USB L/R`.
+6. Не змінюй `Snap To`, `Play From`, markers, Aux sends, рівні `Track 1` або `Main`.
+7. Виконай `File > Save`.
 
 **Import test: Pass**, якщо файл видно у `Track 1` без повідомлення про помилку.
 
@@ -99,9 +101,10 @@ flowchart LR
 
 ## Стан після першого фактичного запуску
 
-Для `Цілуються хмари` import пройшов, але після натискання `Play` у Playback звуку не було чутно. Це не є результатом `Pass` або `Fail` самого WAV: файл уже завантажено коректно. Потрібен окремий test усієї signal chain, описаний у [реєстрі сумісності](04-compatibility-register.md). До цього не змінювати template tracks, Aux, Metronome чи USB routing.
+Для `Цілуються хмари` import пройшов. Перший запуск не давав звуку, бо `Track 1` ще не надсилав audio до потрібної CQ-пари. Після вибору `Track 1 > Output: Out 13–14` звук з’явився. Це підтверджує тільки першу частину signal chain; контрольований test `USB → Main LR → Phones` описано в [реєстрі сумісності](04-compatibility-register.md). До нього не змінювати template tracks, Aux, Metronome чи `Channel Assignment`.
 
 ## Журнал змін
 
 - 2026-07-26 — шаблон `Empty Concert` вилучено як непідтверджений. Фактичний список MainStage 4.3 користувача містить `8 Backing Tracks`.
 - 2026-07-26 — screenshot користувача зафіксував фактичну структуру template: `Untitled Concert`, `Song One`, `Track 1`–`Track 8` із Playback та виходом до `Main`. Процедура import оновлена під цю структуру.
+- 2026-07-26 — фактичний playback test встановив потрібний output для поточного CQ routing: `Track 1 > Output: Out 13–14`.

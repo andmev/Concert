@@ -223,6 +223,55 @@ flowchart LR
 - За офіційною статтею [CQ USB-B Routing](https://support.allen-heath.com/hc/en-gb/articles/31464715078929-CQ-USB-B-Routing), `Channel Assignment` у `Config > USB S/D` описує **upstream configurable USB sends**: сигнал, який CQ відправляє до Mac. Тому значення користувача `11/12 → ST IN`, `13/14 → Out 5/6`, `15/16 → Main LR` не налаштовують повернення audio з MainStage у CQ.
 - Фактичний meter test: MainStage `Track 1` і `Main` рухаються, CQ не показує сигналу. Це відкидає WAV як причину тиші та вказує на непідтверджений mismatch вихідної USB-пари MainStage / digital input CQ. До перегляду актуального MainStage routing жодна пара не перемикається.
 
+## 2026-07-26 — точна routing-пара MainStage 13/14 → CQ USB L/R
+
+### Офіційний CQ User Guide: локальна перевірка PDF після Brave search
+
+**Офіційний документ:** [CQ User Guide v1.2 Issue 6](https://www.allen-heath.com/content/uploads/2023/09/CQ_User_Guide_V1_2_0_iss6.pdf)
+
+**Підтверджені кроки:**
+
+- p. 58: DAW → CQ: обрати CQ як Audio Output Device, призначити DAW output channels, у `CONFIG / INPUTS` вибрати required channels і переключити `Input Source` на `USB/SD`.
+- p. 57: `Multitrack` потрібен, щоб надсилати й отримувати всі channels individually.
+- p. 89: `USB/SD` source отримує USB-B, якщо не активний SD multitrack playback.
+- pp. 82–83, 96: фактичний dedicated stereo return `USB` знаходиться у `PROCESSING` bank `ST. INPUTS / FX`, не на `CONFIG > INPUTS`, де на CQ-12T видно фізичні inputs і analog `ST` input.
+- pp. 41–42, 108: input send до `Main LR` і рівень `Main LR` контролюються у `PROCESSING / INPUTS` або `FADER`.
+- p. 69: Headphone Output source може бути `Main LR`, а рівень доступний також із `HOME`.
+
+### Фактичні налаштування користувача
+
+- MainStage `Settings > Audio`: output/input device `CQ12T – Audio`; 96 kHz.
+- `Audio MIDI Setup > Configure Speakers`: Stereo `Left → Channel 13`, `Right → Channel 14`.
+- За [CQ USB-B Routing](https://support.allen-heath.com/hc/en-gb/articles/31464715078929-CQ-USB-B-Routing), CQ-12T приймає цю пару як dedicated stereo `USB L/R`.
+- Створено окрему процедуру [17-cq12t-mainstage-and-foh.md](17-cq12t-mainstage-and-foh.md) для контрольованого test у Phones.
+
+### Виправлення після фактичного screenshot CQ-12T
+
+- Screenshot користувача підтвердив, що `CONFIG > INPUTS` не показує channel `USB`; він показує `Input 1–10` та analog `ST` input.
+- Попередній шлях `CONFIG > INPUTS > USB` був помилковим і вилучений. Dedicated stereo return відкривається через `PROCESSING > ST. INPUTS / FX > USB`.
+- Наступний screenshot користувача підтвердив, що в actual processing-strip `USB` **немає** блока `Preamp` або меню `Input Source`. Попередню вказівку шукати ці елементи вилучено як помилкову.
+
+## 2026-07-26 — фактичний output MainStage та межа stem-маршрутизації
+
+- Користувач установив у першому Playback strip MainStage `Track 1 > Output: Out 13–14`. Після цього звук із MainStage через CQ з’явився.
+- Офіційна [CQ USB-B Routing table](https://support.allen-heath.com/hc/en-gb/articles/31464715078929-CQ-USB-B-Routing) підтверджує: downstream USB 13 = `USB L`, USB 14 = `USB R` на CQ-12T. Тому фактичний результат відповідає документації.
+- Офіційний [Apple overview of MainStage channel strips](https://support.apple.com/et-ee/guide/mainstage/mstgdc629cf8/mac) підтверджує, що `Output` slot channel strip можна спрямувати на інший output. Це робить future independent stems routing технічно можливим.
+- Висновок: поточний один stereo WAV можна коригувати на CQ тільки як одну stereo-групу. Індивідуальне керування барабанами, басом тощо вимагатиме окремих stems, exported із Logic Pro, кожен із унікальним MainStage output/channel pair. Дублювання одного WAV у восьми strips не розділяє інструменти.
+- Для CQ inputs `1–10` потрібний stem input має бути переведений на `USB/SD`; отже цей самий input не можна паралельно використовувати як analog input TC-Helicon. Остаточна stem-карта має спершу зарезервувати analog inputs для гітари й вокалу.
+
+## 2026-07-26 — перевірка ланцюга `USB → Main LR → Phones` і внутрішня архітектура CQ
+
+- За офіційним CQ User Guide, екран `FADER` показує рівні, що надсилаються до вибраного output; за замовчуванням це `Main LR`. Він також дає доступ до output levels і mutes. Тому test має перевіряти meter `USB`, а потім meter `Main LR` саме за `Sends To: Main LR`.
+- p. 69 User Guide документує окремі `Headphone Output Source` та `Volume`; `Main LR` є допустимим source. Це відокремлює останню ланку `Main LR → Phones` від routing USB.
+- За [CQ-12T technical datasheet](https://www.allen-heath.com/content/uploads/2023/10/CQ-12T-Tech-Datasheet.pdf), CQ-12T має 10 mono inputs (stereo-linkable), три fixed stereo input channels (`ST`, `USB`, `Bluetooth`), пару `Main LR` XLR outputs і шість `Out 1–6` sockets. Це fixed architecture, а не створення необмежених virtual inputs/outputs.
+- DCA/Mute Groups є virtual control groups, а не окремими audio channels або outputs.
+
+## 2026-07-26 — завершення базового monitoring test і перехід до карти пісні
+
+- Користувач підтвердив, що після зміни `Headphone Output > Source` із `Listen` на `Main LR` навушники працюють. Screenshot із полем `Listen` є знімком стану до перемикання.
+- Базовий маршрут `MainStage Out 13–14 → CQ USB L/R → Main LR → Phones` має статус `Pass` для короткого відтворення.
+- Наступна дія не вимагає зміни audio routing: створено картку структури пісні в Logic Pro. Офіційні Apple sources підтверджують, що Arrangement track у Global Tracks містить markers, яким можна змінювати назви та межі; ці markers використовуються тут тільки як музична карта, а не як неперевірений спосіб автоматичного MainStage control.
+
 ## Важлива примітка про попередні файли
 
 Файли `03-glossary.md`, `05-audio-safety-and-power.md` і `06-cables-and-stage-checklists.md` уже містять прямі офіційні посилання. Їхня джерельна база повторно перевірена через Brave 2026-07-26 цим журналом. До створення наступного документа застосовується обов’язковий research gate з [політики джерел](01-evidence-policy.md#evidence-check).
