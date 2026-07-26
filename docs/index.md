@@ -22,7 +22,7 @@ flowchart LR
 
 ## Поточний практичний етап
 
-Після успішної перевірки й export першої пісні наступний ізольований тест — [створити перший test Concert у MainStage та імпортувати один WAV](13-mainstage-concert-foundation.md). Фактичні параметри, результат export і статус import зберігаються окремо в [картці «Цілуються хмари»](song-records/01-tsiluyutsia-khmary.md).
+Перший WAV, markers, navigation і плавний `Cycle` уже пройшли test. Наступний ізольований тест — [під’єднати AIRSTEP Lite як Bluetooth MIDI](16-airstep-lite-mapping.md#крок-1-підєднати-airstep-lite-як-bluetooth-midi). Фактичні параметри та результати першої пісні зберігаються окремо в [картці «Цілуються хмари»](song-records/01-tsiluyutsia-khmary.md).
 
 ## Навігація
 

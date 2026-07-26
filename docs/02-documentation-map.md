@@ -26,7 +26,7 @@ flowchart LR
 8. `13-mainstage-concert-foundation.md` — audio device, базовий `Concert`, один `Set`/`Patch` на пісню, вихід stereo backing track.
 9. `14-mainstage-playback-options.md` — порівняння варіантів для автоматичної пісні й повтору приспіву, документальне обґрунтування вибору та rehearsal test.
 10. `15-mainstage-song-template.md` — обраний повторюваний шаблон однієї пісні; тест на 10 піснях, потім масштабування до 25.
-11. `16-airstep-lite-mapping.md` — Bluetooth MIDI, MIDI Learn, п’ять кнопок, перехід між піснями, повтор приспіву, тест reconnect.
+11. `16-airstep-lite-mapping.md` — Bluetooth MIDI, MIDI Learn, п’ять кнопок, перехід між піснями, повтор приспіву, тест reconnect. Створено; практичний Bluetooth pairing ще не виконано.
 12. `17-cq12t-mainstage-and-foh.md` — MacBook по USB, гітара й SM58 через TC-Helicon, stereo mix у CQ-12T, сценарії Bose/FOH.
 13. `18-zoom-ams24-small-stage.md` — MacBook по USB, TC-Helicon, mono/stereo вихід до обладнання майданчика.
 14. `19-home-rehearsal.md` — відтворення всього сету, рівні, Bluetooth, переходи, аварійна зупинка, журнал тестів.

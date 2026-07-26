@@ -272,6 +272,45 @@ flowchart LR
 - Базовий маршрут `MainStage Out 13–14 → CQ USB L/R → Main LR → Phones` має статус `Pass` для короткого відтворення.
 - Наступна дія не вимагає зміни audio routing: створено картку структури пісні в Logic Pro. Офіційні Apple sources підтверджують, що Arrangement track у Global Tracks містить markers, яким можна змінювати назви та межі; ці markers використовуються тут тільки як музична карта, а не як неперевірений спосіб автоматичного MainStage control.
 
+## 2026-07-26 — Arrangement sections ≠ Marker List для marker-WAV
+
+- Screenshot показав заповнений `Arrangement` track і порожній `Marker` track. Це два різні типи global track у Logic Pro.
+- Офіційна Apple стаття [Use marker information from audio files](https://support.apple.com/guide/logicpro/use-marker-information-lgcpadb63ff8/mac) говорить, що при record або Bounce до audio file додається поточний **Marker List**. Тому перед marker-Bounce треба додати звичайні Marker points на межах уже створених Arrangement sections.
+- Фактичні позиції першої пісні зі screenshot: Intro `1 1 1 1`; Verse `9 1 1 1`; Chorus A `17 1 1 1`; Chorus B `25 1 1 1`; Outro `33 1 1 1`.
+- Майбутня перевірка у MainStage ґрунтуватиметься на офіційній поведінці Playback: marker navigation переміщує playback між parts файла, а `Cycle` повторює ділянку між current marker і next marker. Вона виконуватиметься у копії Concert, без заміни робочого WAV.
+
+## 2026-07-26 — Marker List створено для «Цілуються хмари»
+
+- Screenshot підтвердив п’ять standard Marker points у рядку `Marker`: `Intro`, `Verse`, `Chorus A`, `Chorus B`, `Outro`; їхні start positions збігаються з Arrangement sections: 1, 9, 17, 25, 33.
+- Наступна контрольована дія — окремий marker-WAV: він не замінює перевірений робочий WAV і має пройти новий desktop listening test.
+- Для `Chorus A` початок = bar 17, а наступний marker `Chorus B` = bar 25. Це створює тестову 8-bar marker-boundary для перевірки MainStage `Cycle`; live-дозвіл повторювати приспів ще не зафіксований.
+
+## 2026-07-26 — marker-WAV пройшов desktop listening test
+
+- Користувач підтвердив `Desktop listening test: Pass` для `Цілуються-хмари_BT_stereo_markers_24bit.wav`.
+- Наступний ризик — не audio content, а фактичне читання marker information у MainStage 4.3. Він перевіряється ізольовано в duplicated `Backing Tracks — MARKER TEST.concert`.
+- Офіційна Apple article [Use the MainStage Playback Action menu and File field](https://support.apple.com/guide/mainstage/mainstage-playback-action-menu-file-field-mstg35827cbb/mac) підтверджує `File` field та `Action > Open File` як способи завантажити audio file у Playback instance.
+
+## 2026-07-26 — MainStage 4.3 marker import Pass та правильний output B-Track 1
+
+- Screenshot MARKER TEST Concert підтвердив, що MainStage 4.3 бачить embedded marker information: `Current Marker = Intro`, `Next Marker = Verse`, label `Intro` у waveform.
+- Початкове читання screenshot про `Track 1 > Output 1–2` було помилковим: `B-Track 1` закритий вікном Playback, а видимі `Output 1–2` належать іншим порожнім B-Track strips.
+- Користувач підтвердив: `B-Track 1` з marker-WAV має `Out 13–14`. Маршрут MainStage USB 13/14 → CQ dedicated `USB L/R` зберігається; наступна дія — marker navigation/Cycle test.
+
+## 2026-07-26 — marker navigation і Cycle пройшли test
+
+- `Navigation: Pass` — marker controls пройшли `Intro → Verse → Chorus A → Chorus B`.
+- `Cycle Chorus A: Pass` — тестова ділянка bar 17 → 25 повторилась.
+- `Release to Chorus B: Pass` — після вимкнення Cycle playback продовжився у `Chorus B`.
+- Межа marker-loop пройшла перевірку: користувач почув плавне повернення `Chorus B → Chorus A`, без клацання, тріску, обриву чи короткої паузи. Він описав ефект як плавний fade. Це узгоджується з офіційним описом Apple: `Cycle` автоматично застосовує crossfade у marker points для мінімізації clicks. Navigation і механіка `Cycle` підтверджені; наступна фаза — дослідження та mapping AIRSTEP Lite.
+
+## 2026-07-26 — AIRSTEP Lite Bluetooth MIDI pairing Pass
+
+- Screenshot у `Audio MIDI Setup > MIDI Studio > Configure Bluetooth` підтвердив активне з’єднання: `AIRSTEP Lite`, `MIDI Input/MIDI Output` та доступна дія `Disconnect`.
+- Це відповідає офіційному Apple процесу для Mac як Bluetooth MIDI host: `Window > Show MIDI Studio` → `Configure Bluetooth` → вибрати peripheral → `Connect` ([Apple: Set up Bluetooth MIDI devices](https://support.apple.com/guide/audio-midi-setup/ams33f013765/mac), перевірено 2026-07-26).
+- Наступний test обмежено однією функцією: лівий footswitch AIRSTEP → екранний `Play` у `Backing Tracks — MARKER TEST.concert`. Apple документує `Assign & Map` і три натискання button для MIDI learn ([Apple: Learn a controller assignment](https://support.apple.com/guide/mainstage/mstg338d4728/mac), перевірено 2026-07-26).
+- Перший test `AIRSTEP A → Play` має статус `Fail`: screenshot показав parameter mapping (`Playback > Play/Stop (From Start)`), але не підтвердив MIDI message від footswitch. Це не Bluetooth selector: Bluetooth already handled by macOS. Перед повторним MainStage learn додаємо Apple `Test MIDI Setup`, де up arrow на AIRSTEP Lite має підсвітитися після натискання (`[Apple: Test your MIDI connection](https://support.apple.com/guide/audio-midi-setup/ams668e66f1d/mac)`, перевірено 2026-07-26).
+
 ## Важлива примітка про попередні файли
 
 Файли `03-glossary.md`, `05-audio-safety-and-power.md` і `06-cables-and-stage-checklists.md` уже містять прямі офіційні посилання. Їхня джерельна база повторно перевірена через Brave 2026-07-26 цим журналом. До створення наступного документа застосовується обов’язковий research gate з [політики джерел](01-evidence-policy.md#evidence-check).

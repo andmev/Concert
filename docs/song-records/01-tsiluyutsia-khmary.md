@@ -44,7 +44,28 @@
 | MainStage import test | `Pass` |
 | Перший playback test через CQ-12T | `Pass` для появи звуку: у `Track 1 > Output` обрано `Out 13–14`, після чого звук із MainStage з’явився через CQ dedicated stereo `USB L/R`. Повний test рівнів у `Phones` ще не записано. |
 | Monitoring через `Phones` | `Pass`: користувач підтвердив роботу після вибору `Headphone Output > Source: Main LR`. Screenshot із `Listen` зроблено до цього перемикання. |
+| Marker-WAV desktop listening test | `Pass`: `Цілуються-хмари_BT_stereo_markers_24bit.wav` прослухано від початку до кінця |
+| MainStage marker import | `Pass`: видимі `Current Marker: Intro`, `Next Marker: Verse` і marker `Intro` у waveform MARKER TEST Concert |
+| MARKER TEST output | `Pass`: `B-Track 1` із marker-WAV має `Out 13–14`. Видимі `Output 1–2` у screenshot належать іншим порожнім B-Track strips. |
+| Marker navigation | `Pass`: `Intro → Verse → Chorus A → Chorus B` працює через marker controls MainStage |
+| Cycle `Chorus A` | `Pass`: `Chorus A` повторюється між bar 17 і 25 |
+| Release до `Chorus B` | `Pass`: після вимкнення `Cycle` playback переходить у `Chorus B` |
+| Межі marker-loop | `Pass`: плавне повернення `Chorus B → Chorus A`; без чутних клацань, тріску, обриву або паузи. Користувач чує це як плавний fade. |
+| AIRSTEP Lite Bluetooth MIDI | `Pass`: macOS показує `AIRSTEP Lite` з `MIDI Input/MIDI Output`; дія `Disconnect` підтверджує active connection. |
+| AIRSTEP A → Play | `Fail` (діагностика): MainStage показав Parameter Mapping browser, але MIDI In від footswitch ще не підтверджено. Наступна перевірка — `Audio MIDI Setup > Test MIDI Setup`. |
+
+## Карта структури
+
+| Секція | Початок | Наступна межа |
+| --- | --- | --- |
+| `Intro` | `1 1 1 1` | `9 1 1 1` |
+| `Verse` | `9 1 1 1` | `17 1 1 1` |
+| `Chorus A` | `17 1 1 1` | `25 1 1 1` |
+| `Chorus B` | `25 1 1 1` | `33 1 1 1` |
+| `Outro` | `33 1 1 1` | Кінець пісні ще не зафіксовано окремим marker |
+
+**Стан:** `Arrangement` sections і звичайні Marker points створено та збігаються за межами. Marker-WAV пройшов desktop listening test, MainStage marker import, navigation, `Cycle` і перевірку плавної межі повтору.
 
 ## Наступна дія
 
-Виконати [карту структури пісні в Logic Pro](../12-song-structure-sheet.md): позначити межі секцій і записати, чи та куди можна повторювати кожен приспів. До неї не видаляти template tracks, Aux або Metronome.
+Наступний етап — незалежно перевірити `MIDI In` від лівої кнопки AIRSTEP у `Audio MIDI Setup > Test MIDI Setup`. До підтвердження MIDI input не призначати кнопку в MainStage та не видаляти template tracks, Aux або Metronome у робочому Concert.
