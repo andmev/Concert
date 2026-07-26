@@ -117,7 +117,15 @@ flowchart LR
 
 **Офіційний результат, використаний у документації:**
 
-- [CQ: Multitrack Recording and Playback from SD Card](https://support.allen-heath.com/hc/en-gb/articles/19853352600337-CQ-Multitrack-Recording-and-Playback-from-SD-Card) — у `CONFIG > Digital Audio > USB/SD` обирається `Sample Rate`; CQ-12T підтримує 16×16 USB-аудіо на 48 або 96 kHz. В інструкції не стверджується причина конкретної помилки MainStage, тому в документації це позначено як діагностика, а не встановлений діагноз.
+- [CQ: Multitrack Recording and Playback from SD Card](https://support.allen-heath.com/hc/en-gb/articles/19853352600337-CQ-Multitrack-Recording-and-Playback-from-SD-Card) — Allen & Heath позначає шлях як `CONFIG / Digital Audio (Symbols) / USB/SD`: на фактичному CQ-12T користувача це **піктограма USB, SD і Bluetooth** у `CONFIG`, потім `USB/SD`. Тут обирається `Sample Rate`; CQ-12T підтримує 16×16 USB-аудіо на 48 або 96 kHz. В інструкції не стверджується причина конкретної помилки MainStage, тому в документації це позначено як діагностика, а не встановлений діагноз.
+
+### Brave Web Search
+
+**Query:** `site:support.apple.com Audio MIDI Setup change sample rate audio device Mac`
+
+**Офіційний результат, використаний у документації:**
+
+- [Apple: Set up audio devices in Audio MIDI Setup](https://support.apple.com/guide/audio-midi-setup/set-up-audio-devices-ams59f301fda/mac) — після вибору audio device в sidebar `Format` показує/задає sample rate та bit depth; Apple вимагає відповідності параметрам пристрою.
 
 ### Brave Web Search
 
