@@ -199,6 +199,25 @@ flowchart LR
 - У центральному mixer видно вісім Playback strips: `Track 1`–`Track 8`; вони виведені до `Main`.
 - Цей факт є основою лише для поточного проєкту та версії MainStage користувача. Import-інструкцію оновлено: один stereo backing track завантажується в `Track 1`; інші сім strips не змінюються.
 
+## 2026-07-26 — CQ-12T: діагностика тиші після Playback
+
+### Brave Web Search та Brave LLM Context
+
+**Queries:**
+
+- `site:allen-heath.com/content/uploads CQ User Guide USB B playback USB channel source CQ-12T input channels`
+- `site:support.allen-heath.com CQ USB B playback source input channel USB 1 2 Main LR`
+- `site:support.apple.com/guide/mainstage Playback plug-in no sound output channel strip main output`
+- `https://support.allen-heath.com/hc/en-gb/articles/31464715078929-CQ-USB-B-Routing CQ-12T downstream USB playback inputs 1 2 MainStage`
+
+**Офіційні результати, використані в документації:**
+
+- [Allen & Heath: CQ USB-B Routing](https://support.allen-heath.com/hc/en-gb/articles/31464715078929-CQ-USB-B-Routing) — у CQ-12T USB channels `1` і `2` зі сторони комп’ютера відповідають `Channel 1` і `Channel 2` на mixer.
+- [Allen & Heath: CQ Multitrack streaming using CQ](https://support.allen-heath.com/hc/en-gb/articles/19338440353425-CQ-Multitrack-streaming-using-CQ) — для streaming потрібне USB-B з’єднання CQ з комп’ютером; CQ є Core Audio compliant у macOS.
+- [CQ-12T Technical Datasheet](https://www.allen-heath.com/content/uploads/2023/10/CQ-12T-Tech-Datasheet.pdf) — USB-B є 16×16 bi-directional audio interface 48/96 kHz, 24-bit.
+
+**Обмеження:** офіційні джерела підтверджують mapping, але не дають достатньо підтверджених даних про фактичний стан сигналу на цьому CQ. Наступна дія — прочитати meters і sources по ланках, а не змінювати налаштування навмання.
+
 ## Важлива примітка про попередні файли
 
 Файли `03-glossary.md`, `05-audio-safety-and-power.md` і `06-cables-and-stage-checklists.md` уже містять прямі офіційні посилання. Їхня джерельна база повторно перевірена через Brave 2026-07-26 цим журналом. До створення наступного документа застосовується обов’язковий research gate з [політики джерел](01-evidence-policy.md#evidence-check).

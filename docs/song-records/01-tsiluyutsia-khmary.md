@@ -41,8 +41,9 @@
 | Normalize | `Off` |
 | Mode | `Automatic` |
 | Desktop listening test | `Pass` |
-| MainStage import test | Очікується |
+| MainStage import test | `Pass` |
+| Перший playback test через CQ-12T | `Needs follow-up`: WAV запускався кнопкою `Play` у Playback, але звуку не було чутно; точна ланка тиші ще не визначена |
 
 ## Наступна дія
 
-Прослухати створений WAV-файл від початку до кінця. До import у MainStage мають бути підтверджені: повний початок і кінець, Finger snapping, відсутність живого вокалу й акустичної гітари, відсутність очевидного clipping або спотворення.
+Провести поетапну перевірку MainStage → USB 1/2 → CQ Channel 1/2 → Main LR → фізична акустика. До неї не видаляти template tracks, Aux або Metronome.

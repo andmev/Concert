@@ -16,7 +16,7 @@ stateDiagram-v2
 
 | Компоненти | Поточний статус | Що потрібно зробити перед концертом | Офіційна основа |
 | --- | --- | --- | --- |
-| MainStage 4.3 + macOS Tahoe 26.5.2 | `CQ-12T` обраний без помилки; CQ, MainStage і macOS погоджені на `96 kHz` (2026-07-26) | Провести короткий фактичний playback test, а потім тривалу домашню репетицію | [Apple MainStage Support](https://support.apple.com/mainstage) |
+| MainStage 4.3 + macOS Tahoe 26.5.2 | CQ обраний без помилки; WAV import у Playback пройшов. Перший запуск Playback не дав чутного звуку (2026-07-26) | Поетапно перевірити MainStage meters, CQ USB inputs 1/2, Main LR та фізичну акустику; не змінювати routing навмання | [Apple MainStage Support](https://support.apple.com/mainstage) |
 | Logic Pro 12.3 + macOS Tahoe 26.5.2 | Встановлено | На тестовій пісні підтвердити експорт потрібного stereo backing track | [Apple Logic Pro User Guide](https://support.apple.com/guide/logicpro/welcome/mac) |
 | CQ-12T + macOS Tahoe 26.5.2 по USB | **Не підтверджено виробником на момент фіксації.** Device setup успішний: CQ = `96 kHz`, MainStage = `96 kHz`, macOS = `96,000 Hz, 16 ch, 24-bit Integer` (2026-07-26) | Зробити короткий і тривалий домашній playback test; тільки після них оцінювати придатність до виступу | [CQ-12T Resources](https://www.allen-heath.com/hardware/cq/cq-12t/resources/) · [CQ: USB/SD sample rate](https://support.allen-heath.com/hc/en-gb/articles/19853352600337-CQ-Multitrack-Recording-and-Playback-from-SD-Card) |
 | Zoom AMS-24 + MacBook по USB | Потрібен фактичний тест | Підключити, перевірити Inputs 1/2, `OUTPUT A L/R`, levels і playback у MainStage | [Zoom AMS-24 Operation Manual](https://zoomcorp.com/manuals/ams-24-en/) |
@@ -47,13 +47,25 @@ stateDiagram-v2
 | Mac / ПЗ | MacBook Pro M3 Pro; macOS Tahoe 26.5.2; MainStage 4.3 |
 | Схема | MacBook → USB → CQ-12T |
 | Що підтверджено | CQ-12T з’являється у списку audio devices MainStage |
-| Результат | `Pass` — налаштування audio device; playback ще не тестувався |
+| Результат | `Pass` — audio device та WAV import; `Needs follow-up` — чутний playback через CQ |
 | Точний симптом | Після вибору CQ-12T MainStage показує: `Sample Rate 48 kHz not allowed.` |
 | CQ-12T `Sample Rate` | `96 kHz`; фактичний шлях на пристрої: `CONFIG > піктограма USB, SD і Bluetooth > USB/SD > Sample Rate` |
 | MainStage `Sample Rate` | `96 kHz` |
 | macOS `Format` для CQ-12T | `96,000 Hz, 16 ch, 24-bit Integer` |
 | Що вирішило проблему | Після узгодження MainStage з `96 kHz` помилка зникла. Робоча гіпотеза: до підключення CQ в MainStage залишалося стандартне значення `48 kHz`; це не є підтвердженим поясненням від Apple або Allen & Heath. |
 | Безпечна наступна дія | Не міняти частоту. Виконати короткий тест реального відтворення звуку через CQ-12T. |
+
+### 2026-07-26 — перший запуск Playback після import WAV
+
+| Поле | Значення |
+| --- | --- |
+| Файл | `Цілуються-хмари_BT_stereo_24bit.wav` |
+| MainStage import | `Pass` |
+| Дія | Натиснуто `Play` у відкритому вікні Playback |
+| Чутний результат | Звуку не почуто |
+| Статус | `Needs follow-up` |
+| Що ще не встановлено | Чи рухаються meters у MainStage; чи CQ Channel 1/2 мають source `USB/SD`; чи отримують Main LR signal; чи підключена та увімкнена фізична акустика |
+| Заборона до діагностики | Не видаляти template `Track 2`–`Track 8`, Aux або Metronome; не міняти sample rate; не змінювати USB routing навмання |
 
 Це **ще не** підтвердження готовності CQ-12T до виступу: Allen & Heath на сторінці Resources поки не верифікував його повну роботу з macOS Tahoe 26.
 
